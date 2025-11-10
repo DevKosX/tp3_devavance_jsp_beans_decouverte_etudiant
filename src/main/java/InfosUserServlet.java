@@ -5,6 +5,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
+
+
+import fr.devavance.metier.beans.User;
 
 
 /**
@@ -37,9 +41,17 @@ public class InfosUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+        
+        User user = new User();
+        user.setUserName("alan");
+        user.setProfil("admin");
+        user.setPassword("mp2023t");
       
-    
+        request.setAttribute("userCourant", user);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("infos_user.jsp");
+        rd.forward(request, response);
+        
     }
 
   
